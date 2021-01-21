@@ -1,0 +1,97 @@
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
+import { generateGetOneUserRoute, genereteUpdateUserRoute, getCreateUserUrl, getOneUserUrl } from '../../constants/routes/routes';
+import { deleteUser, getAllUsers, updateStatus } from '../../constants/services/services';
+
+const SecPage = () => {
+
+    const[users, setUser] = useState([]);
+    const history = useHistory();
+
+    useEffect(() => {
+        getData()
+    }, []);
+
+    const getData =async () => {
+        try {
+        const {data} = await getAllUsers();
+        setUser(data);
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    const statusHandler = async (id, status) => {
+        try {
+        await updateStatus(id, {status: !status})
+        await getData()
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    const createHandler = () => {
+        history.push(getCreateUserUrl());
+    }
+
+    const deleteHandler =async (id) => {
+        try{
+            await deleteUser(id);
+            await getData();
+        } catch(err) {
+            console.log(err);
+        }
+    }
+
+    const oneUserHandler = (id) => {
+        history.push(generateGetOneUserRoute(id));
+    }
+
+    const updateUserHandler = (id) => {
+        history.push(genereteUpdateUserRoute(id));
+    }
+
+    
+
+    return(
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Address</th>
+                        <th>City</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                        {users.map((user) => (
+                            <tr key={user.firstName + user.address} >
+                                <td onClick={()=>oneUserHandler(user.id)}>{user.firstName}</td>
+                                <td>{user.lastName}</td>
+                                <td>{user.address} </td>
+                                <td>{user.city}</td>
+                                {user.status === true ? (<td>Active</td>) : (<td>Not Activ</td>)}
+                                <div>
+                                    <td>
+                                        <button onClick={() =>statusHandler(user.id, user.status)}>Change Status</button>
+                                        <button onClick={() =>deleteHandler(user.id)}>Delete User</button>
+                                        <button onClick={() =>updateUserHandler(user.id)}>Update User</button>
+                                    </td>
+                                </div>
+                                
+                            </tr>
+                            
+                        ))}
+                </tbody>
+            </table>
+            <div>
+                <button onClick={createHandler}>Create new User</button>
+            </div>
+        </div>
+    )
+}
+
+export default SecPage;

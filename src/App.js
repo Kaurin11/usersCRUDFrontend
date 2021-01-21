@@ -1,25 +1,27 @@
-import logo from './logo.svg';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import './App.css';
+import { getCreateUserUrl, getOneUserUrl, getStartUrl, getUpdateUserRoute, getUsersPageUrl } from './constants/routes/routes';
+import CreatePage from './view/createPage/createPage';
+import FirstPage from './view/firstPage/firstPage';
+import SecPage from './view/secPage/secPage';
+import UpdatePage from './view/updatePage/updatePage';
+import User from './view/user/user';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <BrowserRouter>
+        <Switch>
+          <Route path={getOneUserUrl()} component={User} />
+          <Route path={getStartUrl()} component={FirstPage} />
+          <Route path={getUsersPageUrl()} component={SecPage} />
+          <Route path={getCreateUserUrl()} component={CreatePage} />
+          <Route path={getUpdateUserRoute()} component={UpdatePage} />
+          <Redirect to={getStartUrl()} />
+        </Switch>
+      </BrowserRouter>
     </div>
-  );
+  )
 }
 
 export default App;
