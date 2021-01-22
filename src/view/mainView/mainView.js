@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
+import Sidebar from '../../components/sidebar/sidebar';
 import { generateGetOneUserRoute, genereteUpdateUserRoute, getCreateUserRoute, getOneUserRoute } from '../../constants/routes/routes';
 import { deleteUser, getAllUsers, updateStatus } from '../../constants/services/services';
 
@@ -57,7 +58,8 @@ const MainView = () => {
 
     return(
         <div>
-            <table>
+            <Sidebar />
+            <table className="section-table">
                 <thead>
                     <tr>
                         <th>First Name</th>
@@ -65,6 +67,7 @@ const MainView = () => {
                         <th>Address</th>
                         <th>City</th>
                         <th>Status</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -90,7 +93,7 @@ const MainView = () => {
                 </tbody>
             </table>
             <div>
-                <button onClick={createHandler}>Create new User</button>
+                <button className="section-table__btn-create" onClick={createHandler}>Create new User</button>
             </div>
         </div>
     )

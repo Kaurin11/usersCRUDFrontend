@@ -1,5 +1,5 @@
 .section-hello {
-  height: 100vh;
+  height: 89vh;
   background-image: linear-gradient(
       to right bottom,
       rgba($color-blue, 0.8),
@@ -19,5 +19,21 @@
   }
 
   &__title {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: $color-white-light;
+
+    h1 {
+      margin-bottom: 2rem;
+    }
+  }
+}
+
+.section-table {
+  margin-left: 16rem;
+
+  &__btn-create {
+    margin-top: 2rem;
+    margin-left: 16rem;
   }
 }
