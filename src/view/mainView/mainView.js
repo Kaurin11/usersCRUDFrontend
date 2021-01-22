@@ -3,6 +3,8 @@ import { useHistory } from 'react-router';
 import { generateGetOneUserRoute, genereteUpdateUserRoute, getCreateUserRoute, getOneUserRoute } from '../../constants/routes/routes';
 import { deleteUser, getAllUsers, updateStatus } from '../../constants/services/services';
 
+import "./style.scss";
+
 const MainView = () => {
 
     const[users, setUser] = useState([]);
