@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
-import { generateGetOneUserRoute, genereteUpdateUserRoute, getCreateUserUrl, getOneUserUrl } from '../../constants/routes/routes';
+import { generateGetOneUserRoute, genereteUpdateUserRoute, getCreateUserRoute, getOneUserRoute } from '../../constants/routes/routes';
 import { deleteUser, getAllUsers, updateStatus } from '../../constants/services/services';
 
-const SecPage = () => {
+const MainView = () => {
 
     const[users, setUser] = useState([]);
     const history = useHistory();
@@ -31,7 +31,7 @@ const SecPage = () => {
     }
 
     const createHandler = () => {
-        history.push(getCreateUserUrl());
+        history.push(getCreateUserRoute());
     }
 
     const deleteHandler =async (id) => {
@@ -94,4 +94,4 @@ const SecPage = () => {
     )
 }
 
-export default SecPage;
+export default MainView;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useRouteMatch } from 'react-router';
-import { getUsersPageUrl } from '../../constants/routes/routes';
+import { getMainViewRoute } from '../../constants/routes/routes';
 import { getOneUser } from '../../constants/services/services';
 
 const User = () => {
@@ -26,7 +26,7 @@ const User = () => {
     }
     
     const backToBikesHandler = () => {
-        history.push(getUsersPageUrl());
+        history.push(getMainViewRoute());
     }
 
     return(

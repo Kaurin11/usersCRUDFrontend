@@ -1,33 +1,48 @@
-import { useFormik,Field } from 'formik';
-import React from 'react';
-import { useHistory } from 'react-router';
-import { getUsersPageUrl } from '../../constants/routes/routes';
-import { createUser } from '../../constants/services/services';
+import { useFormik } from 'formik';
+import React, { useEffect, useState } from 'react';
+import { useHistory, useRouteMatch } from 'react-router';
+import { getMainViewRoute } from '../../constants/routes/routes';
+import { getOneUser, updateStatus } from '../../constants/services/services';
 
-const CreatePage = () => {
+const UpdateUser = () => {
 
+    const match = useRouteMatch();
     const history = useHistory();
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        getUserData();
+    },[]);
 
     const formik = useFormik({
         initialValues: {
-            firstName: "",
+            firstName: "gidra",
             lastName: "",
             address: "",
-            city: "",
-            status: false
+            city: ""
           }
     })
 
-    const createUserHandler =async (e) => {
-        e.preventDefault();
-        console.log(formik.values);
+    const getUserData = async() => {
+        const {id} = match.params; 
         try{
-            await createUser(formik.values);
-            history.push(getUsersPageUrl());
-        }catch(error){
-            console.log(error);
+            const {data} = await getOneUser(id);
+            setUser(data);
+        }catch (err) {
+            console.log(err);
         }
-        //createUser(formik.values);
+    }
+
+
+    const updateUserHandler = async(e) => {
+        e.preventDefault();
+        const {id} = match.params;
+        try{
+            await updateStatus(id,formik.values);
+            history.push(getMainViewRoute())
+        }catch (err) {
+            console.log(err)
+        }
     }
 
     return(
@@ -40,6 +55,7 @@ const CreatePage = () => {
                     placeholder="First Name"
                     name="firstName"
                     id="firstName"
+                    value="firstName"
                     {...formik.getFieldProps("firstName")}
                 />
                 </div>
@@ -76,33 +92,9 @@ const CreatePage = () => {
                     {...formik.getFieldProps("city")}
                 />
                 </div>
-
-                {/* <div>
-                <label htmlFor="status">Status</label>
-                <input
-                    type="checkbox"
-                    placeholder="Yes"
-                    name="status"
-                    id="status"
-                    value={true}
-                    {...formik.getFieldProps("status")}
-                />
-                <input
-                    type="checkbox"
-                    placeholder="No"
-                    name="status"
-                    id="status"
-                    value={false}
-                    {...formik.getFieldProps("status")}
-                />
-                </div> */}
-                <label> Active
-                    <input type="checkbox" name="status" {...formik.getFieldProps("status")}/>
-                </label>
-                <button onClick={createUserHandler}>Create</button>
+                <button onClick={updateUserHandler}>Update</button>
           </form>
         </div>
     )
 }
-
-export default CreatePage;
+export default UpdateUser;
