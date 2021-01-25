@@ -57,7 +57,7 @@ const MainView = () => {
     
 
     return(
-        <div>
+        <div className="main-view">
             <Sidebar />
             <table className="section-table">
                 <thead>
@@ -81,9 +81,9 @@ const MainView = () => {
                                 {user.status === true ? (<td>Active</td>) : (<td>Not Activ</td>)}
                                 <div>
                                     <td>
-                                        <button onClick={() =>statusHandler(user.id, user.status)}>Change Status</button>
-                                        <button onClick={() =>deleteHandler(user.id)}>Delete User</button>
-                                        <button onClick={() =>updateUserHandler(user.id)}>Update User</button>
+                                        <button className="btn" onClick={() =>statusHandler(user.id, user.status)}>Change Status</button>
+                                        <button className="btn" onClick={() =>deleteHandler(user.id)}>Delete User</button>
+                                        <button className="btn" onClick={() =>updateUserHandler(user.id)}>Update User</button>
                                     </td>
                                 </div>
                                 
@@ -93,7 +93,7 @@ const MainView = () => {
                 </tbody>
             </table>
             <div>
-                <button className="section-table__btn-create" onClick={createHandler}>Create new User</button>
+                <button className="btn btn-create" onClick={createHandler}>Create new User</button>
             </div>
         </div>
     )

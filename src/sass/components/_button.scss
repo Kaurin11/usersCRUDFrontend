@@ -6,34 +6,45 @@
     text-decoration: none;
     padding: 1rem 4rem;
     display: inline-block;
-    border-radius: 15rem;
-    transition: all 0.9;
+    border-radius: 1rem;
+    transition: all 0.3;
     position: relative;
-    font-size: $default-font-size;
+    font-size: 1rem;
     //change for <button>
     border: none;
     cursor: pointer;
+    width: max-content;
+    box-shadow: 0 0.3rem 0.3rem rgba($color-black, 0.4);
+    margin: 0.2rem;
   }
 
-  &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+  // &:hover {
+  //   transform: translateY(-3px);
+  //   box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
 
-    &::after {
-      transform: scaleX(1.4) scaleY(1.6);
-      opacity: 0;
-    }
-  }
+  //   &::after {
+  //     transform: scaleX(1.4) scaleY(1.6);
+  //     opacity: 0;
+  //   }
+  // }
 
   &:active,
   &:focus {
     outline: none;
     transform: translateY(-1px);
-    box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+    //box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
   }
 
   &__hello {
     background-color: $button-collor;
     color: $color-white;
+  }
+
+  &-create {
+    position: absolute;
+    top: 3.5rem;
+    left: 105rem;
+    background-color: $button-collor;
+    font-weight: 700;
   }
 }

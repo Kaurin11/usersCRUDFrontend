@@ -31,6 +31,13 @@
 
 .section-table {
   margin-left: 16rem;
+  text-align: center;
+
+  background-image: linear-gradient(
+    to right bottom,
+    $color-table,
+    $color-table-2
+  );
 
   &__btn-create {
     margin-top: 2rem;
