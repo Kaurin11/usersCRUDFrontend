@@ -6,32 +6,65 @@ import { getOneUser, updateStatus } from '../../constants/services/services';
 
 const UpdateUser = () => {
 
+    const [user, setUser] = useState({});
+    const [datas ,setData] = useState(false);
     const match = useRouteMatch();
     const history = useHistory();
-    const [user, setUser] = useState(null);
+    
 
     useEffect(() => {
         getUserData();
     },[]);
 
-    const formik = useFormik({
-        initialValues: {
-            firstName: "gidra",
-            lastName: "",
-            address: "",
-            city: ""
-          }
-    })
-
     const getUserData = async() => {
         const {id} = match.params; 
         try{
             const {data} = await getOneUser(id);
+            console.log(data)
+            setData(true);
             setUser(data);
+            console.log(user)
         }catch (err) {
             console.log(err);
         }
     }
+
+//      const getUserData = async () => {
+//         return new Promise(async (resolve, reject) => {
+//         const {id} = match.params; 
+//       try {
+//         const {data} = await getOneUser(id);
+//         setUser(data);
+//         console.log(data)
+//         console.log(user)
+//         resolve(data);
+//         //setNewCoutry(false);
+//       } catch (err) {
+//         console.error(err);
+//         reject(err);
+//       }
+//     });
+//   };
+
+  const formik = useFormik({
+    initialValues: {
+        firstName: user.firstName,
+        lastName: user.lastName,
+        address: "",
+        city: ""
+      }
+})
+
+    // const getUserData = async() => {
+    //     const {id} = match.params; 
+    //     try{
+    //         const {data} = await getOneUser(id);
+    //         setUser(data);
+    //         console.log(data)
+    //     }catch (err) {
+    //         console.log(err);
+    //     }
+    // }
 
 
     const updateUserHandler = async(e) => {
@@ -47,8 +80,10 @@ const UpdateUser = () => {
 
     return(
         <div>
+            
             <form action="#">
                 <div >
+
                 <label  htmlFor="firstName"></label>
                 <input
                     type="text"
@@ -61,6 +96,7 @@ const UpdateUser = () => {
                 </div>
 
                 <div>
+                    
                 <label htmlFor="lastName"></label>
                 <input
                     type="text"

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useRouteMatch } from 'react-router';
+import Button from '../../components/button/button';
 import { getMainViewRoute } from '../../constants/routes/routes';
 import { getOneUser } from '../../constants/services/services';
 
@@ -32,16 +33,22 @@ const User = () => {
     return(
         <div>
             {user && (
-            <div>
-            <div>First Name :{user.firstName}</div>
-            <div>Last Name : {user.lastName}</div>
-            <div>Address :{user.address}</div>
-            <div>City : {user.city}</div>
-            <div>Status : {user.status === true ? ('Active') : ('Not Activ')}</div>
+            <div className="user-info">
+                <div className="user-info__card">
+                    <div className="user-info__content">
+                        <p><strong>First Name</strong> :{user.firstName}</p>
+                        <p><strong>Last Name</strong> : {user.lastName}</p>
+                        <p><strong>Address</strong> :{user.address}</p>
+                        <p><strong>City</strong>: {user.city}</p>
+                        <p><strong>Status</strong> : {user.status === true ? ('Active') : ('Not Activ')}</p> 
+                    </div>
+                    
+                </div>
+                <Button  className="btn btn__hello user-info__btn" onClick={() => backToBikesHandler()} name={'Back'} />
             </div>
         )}
 
-            <button onClick={() => backToBikesHandler()}>Back</button>
+            
         </div>
     )
 }

@@ -1,0 +1,39 @@
+.user-info {
+  height: 90vh;
+  background-size: cover;
+  background-position: top;
+  text-align: center;
+  background-image: url(../../../src/assets/img/user-work.jpg);
+
+  &__btn {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__card {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: left;
+    //border: 1px solid;
+    height: 20rem;
+    border-radius: 1rem;
+    background-image: linear-gradient(
+      to right bottom,
+      $color-content-user,
+      $color-content-user-2
+    );
+  }
+
+  &__content {
+    padding: 1rem;
+    font-size: $detail-font-size;
+  }
+
+  p {
+    margin-bottom: 0.7rem;
+  }
+}
