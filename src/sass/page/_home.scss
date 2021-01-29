@@ -32,6 +32,7 @@
 .section-table {
   margin-left: 16rem;
   text-align: center;
+  margin-top: 5rem;
 
   background-image: linear-gradient(
     to right bottom,
@@ -40,7 +41,7 @@
   );
 
   &__btn-create {
-    margin-top: 2rem;
+    margin-top: 5rem;
     margin-left: 16rem;
   }
 }

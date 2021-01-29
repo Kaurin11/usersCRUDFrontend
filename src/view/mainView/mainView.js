@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import Sidebar from '../../components/sidebar/sidebar';
+import Header from '../../components/header/header';
 import { generateGetOneUserRoute, genereteUpdateUserRoute, getCreateUserRoute, getOneUserRoute } from '../../constants/routes/routes';
 import { deleteUser, getAllUsers, updateStatus } from '../../constants/services/services';
 
@@ -58,6 +59,7 @@ const MainView = () => {
 
     return(
         <div className="main-view">
+            <Header />
             <Sidebar />
             <table className="section-table">
                 <thead>
